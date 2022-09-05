@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { Card, CardContent, Spacer, Text, Block, Flex, Link } from "vcc-ui";
+import { Card, CardContent, Spacer, Text, Flex, Link } from "vcc-ui";
 import { Vehicle } from "../../models/Vehicle";
 import Image from "next/image";
 type VehicleItemProps = {
@@ -41,7 +41,7 @@ export const VehicleItem: FC<VehicleItemProps> = ({ vehicle }) => {
       >
         <Link
           style={{ padding: "8px" }}
-          href={"http://localhost:3000/learn/" + vehicle.id}
+          href={"/learn/" + vehicle.id}
           arrow="right"
         >
           {" "}
@@ -50,7 +50,7 @@ export const VehicleItem: FC<VehicleItemProps> = ({ vehicle }) => {
         <Spacer />
         <Link
           style={{ padding: "8px" }}
-          href={"http://localhost:3000/shop/" + vehicle.id}
+          href={"/shop/" + vehicle.id}
           arrow="right"
         >
           {" "}

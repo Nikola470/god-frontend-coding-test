@@ -6,7 +6,7 @@ import { ErrorHandler } from "../src/components/error-handler/ErrorHandler";
 import { VehicleAction } from "../src/components/vehicle/VehicleAction";
 import { FilterVehicleData } from "../src/utils/filter-car-data/FilterVehicleData";
 import { Loader } from "../src/components/loader/Loader";
-import { Flex, View, IconButton } from "vcc-ui";
+import { View } from "vcc-ui";
 
 interface State {
   data: Array<Vehicle>;
@@ -67,35 +67,6 @@ export const Vehicles: FC = () => {
     <View>
       {<VehicleAction onSearchChange={searchChangeHandler} />}
       {state.loading ? <Loader /> : <VehicleList vehicles={filteredData} />}
-      <Flex
-        extend={{
-          flexDirection: "row",
-          flexWrap: "wrap",
-          justifyContent: "end",
-          padding: "25px",
-        }}
-      >
-        <div style={{ padding: "10px" }}>
-          <IconButton
-            variant="outline"
-            aria-label="Next slide"
-            iconName="navigation-chevronback"
-            onClick={() => {
-              console.log("nm");
-            }}
-          />
-        </div>
-        <div style={{ padding: "10px" }}>
-          <IconButton
-            variant="outline"
-            aria-label="Previous slide"
-            iconName="navigation-chevronforward"
-            onClick={() => {
-              console.log("nm");
-            }}
-          />
-        </div>
-      </Flex>
     </View>
   );
 };

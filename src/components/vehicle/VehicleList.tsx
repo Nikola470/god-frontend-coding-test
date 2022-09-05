@@ -5,7 +5,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { View } from "vcc-ui";
+import { Flex, IconButton, View } from "vcc-ui";
+import React from "react";
 
 type VehicleListProps = {
   vehicles: Vehicle[];
@@ -18,7 +19,7 @@ export const VehicleList: FC<VehicleListProps> = ({ vehicles }) => {
     autoplay: false,
     initialSlide: 0,
     autoplaySpeed: 3000,
-    slidesToScroll: vehicles.length < 4 ? 1 : 4,
+    slidesToScroll: vehicles.length < 4 ? vehicles.length : 4,
     slidesToShow: vehicles.length < 4 ? vehicles.length : 4,
     responsive: [
       {
@@ -32,13 +33,39 @@ export const VehicleList: FC<VehicleListProps> = ({ vehicles }) => {
       },
     ],
   };
+  const sliderRef = React.useRef<Slider>(null);
   return (
     <View paddingLeft={5} paddingRight={5}>
-      <Slider {...settings}>
+      <Slider {...settings} ref={sliderRef}>
         {vehicles.map((vehicle) => (
           <VehicleItem key={vehicle.id} vehicle={vehicle} />
         ))}
       </Slider>
+      <Flex
+        extend={{
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "end",
+          padding: "25px",
+        }}
+      >
+        <div style={{ padding: "10px" }}>
+          <IconButton
+            variant="outline"
+            aria-label="Next slide"
+            iconName="navigation-chevronback"
+            onClick={() => sliderRef.current?.slickPrev()}
+          />
+        </div>
+        <div style={{ padding: "10px" }}>
+          <IconButton
+            variant="outline"
+            aria-label="Previous slide"
+            iconName="navigation-chevronforward"
+            onClick={() => sliderRef.current?.slickNext()}
+          />
+        </div>
+      </Flex>
     </View>
   );
 };
