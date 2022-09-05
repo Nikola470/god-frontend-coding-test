@@ -35,6 +35,13 @@
     "imageUrl": "/images/v90_recharge.jpg"
   },
   {
+    "id": "v10-recharge",
+    "modelName": "V10 Recharge",
+    "bodyType": "estate",
+    "modelType": "plug-in hybrid",
+    "imageUrl": "/images/v90_recharge.jpg"
+  },
+  {
     "id": "v60-recharge",
     "modelName": "V60 Recharge",
     "bodyType": "estate",

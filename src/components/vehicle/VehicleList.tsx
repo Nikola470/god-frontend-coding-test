@@ -14,17 +14,20 @@ type VehicleListProps = {
 export const VehicleList: FC<VehicleListProps> = ({ vehicles }) => {
   let settings = {
     dots: false,
+    infinite: false,
     autoplay: false,
+    initialSlide: 0,
     autoplaySpeed: 3000,
-    slidesToScroll: 4,
-    slidesToShow: 4,
+    slidesToScroll: vehicles.length < 4 ? 1 : 4,
+    slidesToShow: vehicles.length < 4 ? vehicles.length : 4,
     responsive: [
       {
-        breakpoint: 600,
+        breakpoint: 1024,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
+          initialSlide: 1,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          dots: true,
         },
       },
     ],

@@ -1,25 +1,30 @@
 import type { FC } from "react";
-import { Card, CardContent, Spacer, Text, Block } from "vcc-ui";
+import { Card, CardContent, Spacer, Text, Block, Flex, Link } from "vcc-ui";
 import { Vehicle } from "../../models/Vehicle";
 import Image from "next/image";
-
 type VehicleItemProps = {
   vehicle: Vehicle;
 };
-
 export const VehicleItem: FC<VehicleItemProps> = ({ vehicle }) => {
-  // const navigate = useNavigate();
-
   return (
-    <Card
-      // onClick={() => navigate(`${vehicle.id}`)}
-      style={{ cursor: "pointer" }}
-    >
+    <Card style={{ cursor: "pointer", margin: "10px", boxShadow: "none" }}>
       <CardContent>
-        <Text style={{ fontWeight: "bold" }}>{vehicle.modelName}</Text>
+        <Text variant="columbus" style={{ textTransform: "uppercase" }}>
+          {vehicle.bodyType}
+        </Text>
         <Spacer />
-        <Text>{vehicle.modelType}</Text>
-        <Text>{vehicle.bodyType}</Text>
+        <Flex
+          extend={{
+            flexDirection: "row",
+            flexWrap: "wrap",
+            overflowWrap: "break-word",
+          }}
+        >
+          <Text subStyle="emphasis"> {vehicle.modelName} </Text>
+          <Spacer />
+          <Text> {vehicle.modelType} </Text>
+        </Flex>
+        <Spacer />
       </CardContent>
       <Image
         src={vehicle.imageUrl}
@@ -27,10 +32,31 @@ export const VehicleItem: FC<VehicleItemProps> = ({ vehicle }) => {
         width={240}
         height={320}
       />
-      <Block extend={{ textAlign: "center" }}>
-        <Text subStyle="inline-link">LEARN</Text>
-        <Text subStyle="emphasis">SHOP</Text>
-      </Block>
+      <Flex
+        extend={{
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "center",
+        }}
+      >
+        <Link
+          style={{ padding: "8px" }}
+          href={"http://localhost:3000/learn/" + vehicle.id}
+          arrow="right"
+        >
+          {" "}
+          LEARN{" "}
+        </Link>
+        <Spacer />
+        <Link
+          style={{ padding: "8px" }}
+          href={"http://localhost:3000/shop/" + vehicle.id}
+          arrow="right"
+        >
+          {" "}
+          SHOP{" "}
+        </Link>
+      </Flex>
     </Card>
   );
 };
